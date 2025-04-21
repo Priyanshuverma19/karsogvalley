@@ -137,7 +137,7 @@ export default function Home() {
         className="relative h-[600px] bg-cover bg-center"
         style={{
           backgroundImage:
-            'url("/banner2.png")',
+            'url("/banner4.png")',
         }}
       >
         {/* <div className="absolute inset-0 bg-black/50" /> */}
