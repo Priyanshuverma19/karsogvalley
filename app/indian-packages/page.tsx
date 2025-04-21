@@ -14,13 +14,22 @@ import {
 import { MapPin, Users, Calendar, IndianRupee } from "lucide-react";
 import Link from "next/link";
 
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { EnquiryForm } from "@/components/EnquiryForm";
+
 const indianPackages = [
   {
     id: 1,
     title: "Kerala Backwaters Bliss",
     location: "Kerala",
     duration: "5 Days / 4 Nights",
-    price: 35999,
+    price: 19999,
     image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=800&q=80",
     category: "nature",
     persons: "2",
@@ -31,8 +40,8 @@ const indianPackages = [
     title: "Royal Rajasthan Tour",
     location: "Rajasthan",
     duration: "7 Days / 6 Nights",
-    price: 45999,
-    image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=800&q=80",
+    price: 25999,
+    image: "https://images.unsplash.com/photo-1718923088525-5e38c837c800?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     category: "cultural",
     persons: "2",
     highlights: ["Palace Stay", "Desert Safari", "Folk Dance"],
@@ -42,7 +51,7 @@ const indianPackages = [
     title: "Goa Beach Paradise",
     location: "Goa",
     duration: "4 Days / 3 Nights",
-    price: 29999,
+    price: 20999,
     image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80",
     category: "beach",
     persons: "2",
@@ -53,7 +62,7 @@ const indianPackages = [
     title: "Himalayan Adventure",
     location: "Himachal Pradesh",
     duration: "6 Days / 5 Nights",
-    price: 42999,
+    price: 25999,
     image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80",
     category: "adventure",
     persons: "2",
@@ -64,7 +73,7 @@ const indianPackages = [
     title: "Golden Triangle",
     location: "Delhi-Agra-Jaipur",
     duration: "6 Days / 5 Nights",
-    price: 39999,
+    price: 30999,
     image: "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=80",
     category: "cultural",
     persons: "2",
@@ -75,8 +84,8 @@ const indianPackages = [
     title: "Kashmir Paradise",
     location: "Kashmir",
     duration: "7 Days / 6 Nights",
-    price: 49999,
-    image: "https://images.unsplash.com/photo-1566837945700-30057527ade0?auto=format&fit=crop&w=800&q=80",
+    price: 29999,
+    image: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     category: "nature",
     persons: "2",
     highlights: ["Shikara Ride", "Gondola Ride", "Mughal Gardens"],
@@ -204,7 +213,19 @@ export default function IndianPackagesPage() {
                       {pkg.price.toLocaleString()}
                     </span>
                   </div>
-                  <Button>View Details</Button>
+                  <Sheet>
+            <SheetTrigger asChild>
+              <Button >Quick Enquiry</Button>
+            </SheetTrigger>
+            <SheetContent>
+              <SheetHeader>
+                <SheetTitle>Quick Enquiry</SheetTitle>
+              </SheetHeader>
+              <div className="mt-6">
+                <EnquiryForm />
+              </div>
+            </SheetContent>
+          </Sheet>
                 </div>
               </div>
             </Card>

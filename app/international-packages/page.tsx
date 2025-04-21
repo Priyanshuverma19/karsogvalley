@@ -12,6 +12,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { MapPin, Users, Calendar, IndianRupee } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { EnquiryForm } from "@/components/EnquiryForm";
 
 const internationalPackages = [
   {
@@ -19,7 +27,7 @@ const internationalPackages = [
     title: "Bali Paradise Escape",
     location: "Bali, Indonesia",
     duration: "7 Days / 6 Nights",
-    price: 89999,
+    price: 49999,
     image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80",
     category: "beach",
     persons: "2",
@@ -30,7 +38,7 @@ const internationalPackages = [
     title: "Dubai Luxury Experience",
     location: "Dubai, UAE",
     duration: "6 Days / 5 Nights",
-    price: 129999,
+    price: 79999,
     image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80",
     category: "luxury",
     persons: "2",
@@ -41,7 +49,7 @@ const internationalPackages = [
     title: "Swiss Alps Explorer",
     location: "Switzerland",
     duration: "8 Days / 7 Nights",
-    price: 199999,
+    price: 89999,
     image: "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&w=800&q=80",
     category: "adventure",
     persons: "2",
@@ -52,7 +60,7 @@ const internationalPackages = [
     title: "Singapore Family Fun",
     location: "Singapore",
     duration: "5 Days / 4 Nights",
-    price: 99999,
+    price: 69999,
     image: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=800&q=80",
     category: "family",
     persons: "2",
@@ -63,7 +71,7 @@ const internationalPackages = [
     title: "Thailand Beach Hopping",
     location: "Thailand",
     duration: "6 Days / 5 Nights",
-    price: 79999,
+    price: 69999,
     image: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=800&q=80",
     category: "beach",
     persons: "2",
@@ -74,7 +82,7 @@ const internationalPackages = [
     title: "Paris Romance",
     location: "France",
     duration: "7 Days / 6 Nights",
-    price: 179999,
+    price: 79999,
     image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80",
     category: "luxury",
     persons: "2",
@@ -203,7 +211,19 @@ export default function InternationalPackagesPage() {
                       {pkg.price.toLocaleString()}
                     </span>
                   </div>
-                  <Button>View Details</Button>
+                          <Sheet>
+                              <SheetTrigger asChild>
+                                <Button >Quick Enquiry</Button>
+                              </SheetTrigger>
+                              <SheetContent>
+                                <SheetHeader>
+                                  <SheetTitle>Quick Enquiry</SheetTitle>
+                                </SheetHeader>
+                                <div className="mt-6">
+                                  <EnquiryForm />
+                                </div>
+                              </SheetContent>
+                            </Sheet>
                 </div>
               </div>
             </Card>

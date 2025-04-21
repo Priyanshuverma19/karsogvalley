@@ -14,8 +14,7 @@ import {
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { Plane, Menu, X } from "lucide-react";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
+import { EnquiryForm } from "@/components/EnquiryForm";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,8 +24,8 @@ export function Navbar() {
     { name: "Home", href: "/" },
     { name: "Indian Packages", href: "/indian-packages" },
     { name: "International Packages", href: "/international-packages" },
-    { name: 'About', href: '/about' },
-    { name: 'Contact', href: '/contact' },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -36,7 +35,7 @@ export function Navbar() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
               <Plane className="h-6 w-6 text-primary" />
-              <span className="text-xl font-bold">Karsog valley tour and travels </span>
+              <span className="text-xl font-bold">Karsog valley tour and travels</span>
             </Link>
           </div>
 
@@ -60,27 +59,12 @@ export function Navbar() {
               <SheetTrigger asChild>
                 <Button variant="outline">Enquire Now</Button>
               </SheetTrigger>
-              <SheetContent>
+              <SheetContent className="w-full sm:max-w-md overflow-y-auto">
                 <SheetHeader>
                   <SheetTitle>Package Enquiry</SheetTitle>
                 </SheetHeader>
-                <div className="mt-6 space-y-4">
-                  <div>
-                    <Input placeholder="Your Name" />
-                  </div>
-                  <div>
-                    <Input type="email" placeholder="Email Address" />
-                  </div>
-                  <div>
-                    <Input type="tel" placeholder="Phone Number" />
-                  </div>
-                  <div>
-                    <Input placeholder="Destination" />
-                  </div>
-                  <div>
-                    <Textarea placeholder="Your Message" rows={4} />
-                  </div>
-                  <Button className="w-full">Send Enquiry</Button>
+                <div className="mt-6 pb-6">
+                  <EnquiryForm />
                 </div>
               </SheetContent>
             </Sheet>
@@ -122,31 +106,16 @@ export function Navbar() {
             ))}
             <Sheet>
               <SheetTrigger asChild>
-                <Button className="w-full" onClick={() => setIsOpen(false)}>
+                <Button className="w-full">
                   Enquire Now
                 </Button>
               </SheetTrigger>
-              <SheetContent>
+              <SheetContent className="w-full overflow-y-auto">
                 <SheetHeader>
                   <SheetTitle>Package Enquiry</SheetTitle>
                 </SheetHeader>
-                <div className="mt-6 space-y-4">
-                  <div>
-                    <Input placeholder="Your Name" />
-                  </div>
-                  <div>
-                    <Input type="email" placeholder="Email Address" />
-                  </div>
-                  <div>
-                    <Input type="tel" placeholder="Phone Number" />
-                  </div>
-                  <div>
-                    <Input placeholder="Destination" />
-                  </div>
-                  <div>
-                    <Textarea placeholder="Your Message" rows={4} />
-                  </div>
-                  <Button className="w-full">Send Enquiry</Button>
+                <div className="mt-6 pb-6">
+                  <EnquiryForm onSubmitSuccess={() => setIsOpen(false)} />
                 </div>
               </SheetContent>
             </Sheet>
