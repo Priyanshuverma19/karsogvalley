@@ -9,7 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Search, Star, Clock, Shield, Heart, Award } from "lucide-react";
+import { Search, Star, Clock, Shield, Heart, Award,MapPin } from "lucide-react";
 import { DestinationCarousel } from "@/components/DestinationCarousel";
 
 import {
@@ -20,6 +20,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { EnquiryForm } from "@/components/EnquiryForm";
+import Image from "next/image";
 
 const featuredPackages = [
   {
@@ -103,6 +104,33 @@ const featuredInternationalPackages = [
     image: "https://images.unsplash.com/photo-1544986588-da9de4fb3021?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
+const packages = [
+
+  {
+    id: 'karsog-shikari-devi-3n4d',
+    title: '3 Night - 4 Days Karsog-Shikari Devi',
+    destination: 'Karsog, Himachal Pradesh',
+    price: 7500,
+    duration: '3N/4D',
+    image: '/shikari3.jpeg', // Replace with actual image path
+  },
+  {
+    id: 'narkanda-sarahan-2n3d',
+    title: '2 Night - 3 Days Narkanda-Sarahan',
+    destination: 'Narkanda, Sarahan, Himachal Pradesh',
+    price: 6000,
+    duration: '2N/3D',
+    image: '/sarahan1.jpeg', // Replace with actual image path
+  },
+  {
+    id: 'tirthan-jibhi-jalori-3n4d',
+    title: '3 Night - 4 Days Tirthan-Jibhi-Jalori',
+    destination: 'Tirthan Valley, Himachal Pradesh',
+    price: 8000,
+    duration: '3N/4D',
+    image: '/jalori2.jpeg', // Replace with actual image path
+  },
+];
 
 
 export default function Home() {
@@ -137,11 +165,14 @@ export default function Home() {
         className="relative h-[600px] bg-cover bg-center"
         style={{
           backgroundImage:
-            'url("/banner4.png")',
+            'url("/banner6.png")',
         }}
       >
         {/* <div className="absolute inset-0 bg-black/50" /> */}
         <div className="relative mx-auto max-w-7xl px-4 py-32 sm:px-6 lg:px-8">
+          <div className="text-center -mt-28 md:hidden"> 
+            <h1 className="text-black text-3xl font-bold"> जय नाग पोखी</h1>
+          </div>
           <div className="text-center">
             {/* <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
               Discover Amazing Travel Packages
@@ -161,7 +192,75 @@ export default function Home() {
         </div>
       </section>
 
-
+{/* package section */}
+<section className="py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+          Explore Our Adventure Packages
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {packages.map((pkg) => (
+            <Card
+              key={pkg.id}
+              className="overflow-hidden bg-white dark:bg-gray-800 shadow-lg transition-transform hover:scale-105"
+            >
+              <div className="relative h-48">
+                <Image
+                  src={pkg.image}
+                  alt={pkg.title}
+                  fill
+                  className="object-cover"
+                  priority={pkg.id === 'manali-kasol-3n4d'} // Optional: prioritize featured package
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                  {pkg.title}
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300 flex items-center mb-2">
+                  <MapPin className="h-4 w-4 mr-2 text-blue-600 dark:text-blue-400" />
+                  {pkg.destination}
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-300 flex items-center mb-4">
+                  <Clock className="h-4 w-4 mr-2 text-blue-600 dark:text-blue-400" />
+                  {pkg.duration}
+                </p>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <p className="text-lg font-bold text-gray-900 dark:text-white">
+                      ₹{pkg.price.toLocaleString()}
+                    </p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">per person</p>
+                  </div>
+                  <div className="flex gap-2">
+                    <Link href={`/trips/${pkg.id}`}>
+                      <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                        View Details
+                      </Button>
+                    </Link>
+                    <Sheet>
+                      <SheetTrigger asChild>
+                        <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-900/20">
+                          Quick Enquiry
+                        </Button>
+                      </SheetTrigger>
+                      <SheetContent>
+                        <SheetHeader>
+                          <SheetTitle>Quick Enquiry - {pkg.title}</SheetTitle>
+                        </SheetHeader>
+                        <div className="mt-6">
+                          <EnquiryForm  />
+                        </div>
+                      </SheetContent>
+                    </Sheet>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
 
    
 
