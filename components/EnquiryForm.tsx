@@ -18,14 +18,21 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 
 const enquirySchema = z.object({
-    name: z.string().min(2, "Name must be at least 2 characters"),
-    email: z.string().email("Invalid email address"),
-    destination: z.string().min(2, "Destination must be at least 2 characters"),
-    message: z.string().optional(),
-    male: z.string().regex(/^\d+$/, "Must be a number").optional(),
-    female: z.string().regex(/^\d+$/, "Must be a number").optional(),
-    child: z.string().regex(/^\d+$/, "Must be a number").optional(),
-  });
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Invalid email address"),
+  phone: z
+    .string()
+    .min(10, "Phone number must be at least 10 digits")
+    .regex(
+      /^\+?[\d\s-]{10,}$/,
+      "Phone number must contain only digits, spaces, or dashes, with optional country code"
+    ),
+  destination: z.string().min(2, "Destination must be at least 2 characters"),
+  message: z.string().optional(),
+  male: z.string().regex(/^\d+$/, "Must be a number").optional(),
+  female: z.string().regex(/^\d+$/, "Must be a number").optional(),
+  child: z.string().regex(/^\d+$/, "Must be a number").optional(),
+});
 
 type EnquiryFormValues = z.infer<typeof enquirySchema>;
 
@@ -39,14 +46,15 @@ export function EnquiryForm({ onSubmitSuccess }: EnquiryFormProps) {
   const form = useForm<EnquiryFormValues>({
     resolver: zodResolver(enquirySchema),
     defaultValues: {
-        name: "",
-        email: "",
-        destination: "",
-        message: "",
-        male: "",
-        female: "",
-        child: "",
-      },
+      name: "",
+      email: "",
+      phone: "",
+      destination: "",
+      message: "",
+      male: "",
+      female: "",
+      child: "",
+    },
   });
 
   async function onSubmit(values: EnquiryFormValues) {
@@ -94,19 +102,31 @@ export function EnquiryForm({ onSubmitSuccess }: EnquiryFormProps) {
           )}
         />
         <FormField
-  control={form.control}
-  name="destination"
-  render={({ field }) => (
-    <FormItem>
-      <FormLabel>Package Destination</FormLabel>
-      <FormControl>
-        <Input placeholder="e.g., Himachal, Bali, Switzerland..." {...field} />
-      </FormControl>
-      <FormMessage />
-    </FormItem>
-  )}
-/>
-
+          control={form.control}
+          name="phone"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Phone Number</FormLabel>
+              <FormControl>
+                <Input type="tel" placeholder="Your phone number" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="destination"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Package Destination</FormLabel>
+              <FormControl>
+                <Input placeholder="e.g., Himachal, Bali, Switzerland..." {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="male"

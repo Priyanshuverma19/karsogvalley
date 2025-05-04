@@ -4,8 +4,16 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { Calendar, Clock, MapPin, Users, Check, X, Info, ShoppingCart, Camera } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
+
 import { notFound } from 'next/navigation';
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { EnquiryForm } from "@/components/EnquiryForm";
 
 // Static Trip Data (you can move this to a separate file or database later)
 const trips = [
@@ -227,11 +235,11 @@ const trips = [
     duration: 4,
     description: 'Immerse yourself in the pristine beauty of Tirthan Valley, Jibhi, and Jalori Pass...',
     images: [
-      '/Jalori1.jpeg',
-      '/Jalori2.jpeg',
-      '/Jalori3.jpeg',
-      '/Jalori4.jpeg',
-      '/Jalori5.jpeg',
+      '/alori1.jpeg',
+      '/alori2.jpeg',
+      '/alori3.jpeg',
+      '/alori4.jpeg',
+      '/alori5.jpeg',
     ],
     itinerary: [
       {
@@ -317,14 +325,9 @@ export default function TripDetails({ params }) {
   }
 
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const { toast } = useToast();
 
-  const handleAddToCart = () => {
-    toast({
-      title: 'Added to cart',
-      description: `${trip.title} has been added to your cart`,
-    });
-  };
+
+
 
   return (
     <div className="container mx-auto px-4 pt-28 pb-16 max-w-7xl">
@@ -408,14 +411,19 @@ export default function TripDetails({ params }) {
           *Starting price for quad sharing from Chandigarh.
         </p>
       </div>
-      <Button
-        size="lg"
-        onClick={handleAddToCart}
-        className="bg-blue-600 hover:bg-blue-700 text-white"
-      >
-        <ShoppingCart className="h-4 w-4 mr-2" />
-        Book Now
-      </Button>
+          <Sheet>
+               <SheetTrigger asChild>
+                 <Button ><ShoppingCart className="h-5 w-5 mr-2" /> Book Now</Button>
+               </SheetTrigger>
+               <SheetContent className="w-full sm:max-w-md overflow-y-auto">
+                 <SheetHeader>
+                   <SheetTitle> Book Now</SheetTitle>
+                 </SheetHeader>
+                 <div className="mt-6">
+                   <EnquiryForm />
+                 </div>
+               </SheetContent>
+             </Sheet>
     </div>
     <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-12">
       <Info className="h-4 w-4 mr-2 text-blue-600 dark:text-blue-400" />
@@ -543,14 +551,27 @@ export default function TripDetails({ params }) {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button
+            {/* <Button
               size="lg"
               className="bg-white text-blue-600 hover:bg-white/90"
               onClick={handleAddToCart}
             >
               <ShoppingCart className="h-5 w-5 mr-2" />
               Book Now
-            </Button>
+            </Button> */}
+                   <Sheet>
+                        <SheetTrigger asChild>
+                          <Button > <ShoppingCart className="h-5 w-5 mr-2" /> Book Now</Button>
+                        </SheetTrigger>
+                        <SheetContent className="w-full sm:max-w-md overflow-y-auto">
+                          <SheetHeader>
+                            <SheetTitle> Book Now</SheetTitle>
+                          </SheetHeader>
+                          <div className="mt-6">
+                            <EnquiryForm />
+                          </div>
+                        </SheetContent>
+                      </Sheet>
             <Button
               size="lg"
               variant="outline"

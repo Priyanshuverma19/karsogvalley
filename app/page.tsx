@@ -244,7 +244,7 @@ export default function Home() {
                           Quick Enquiry
                         </Button>
                       </SheetTrigger>
-                      <SheetContent>
+                      <SheetContent className="w-full sm:max-w-md overflow-y-auto">
                         <SheetHeader>
                           <SheetTitle>Quick Enquiry - {pkg.title}</SheetTitle>
                         </SheetHeader>
@@ -296,7 +296,7 @@ export default function Home() {
                               <SheetTrigger asChild>
                                 <Button >Quick Enquiry</Button>
                               </SheetTrigger>
-                              <SheetContent>
+                              <SheetContent className="w-full sm:max-w-md overflow-y-auto">
                                 <SheetHeader>
                                   <SheetTitle>Quick Enquiry</SheetTitle>
                                 </SheetHeader>
@@ -362,7 +362,7 @@ export default function Home() {
             <SheetTrigger asChild>
               <Button >Quick Enquiry</Button>
             </SheetTrigger>
-            <SheetContent>
+            <SheetContent className="w-full sm:max-w-md overflow-y-auto">
               <SheetHeader>
                 <SheetTitle>Quick Enquiry</SheetTitle>
               </SheetHeader>
