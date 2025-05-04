@@ -330,100 +330,102 @@ export default function TripDetails({ params }) {
     <div className="container mx-auto px-4 pt-28 pb-16 max-w-7xl">
       {/* Same JSX as your original TripDetails component */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-        <div className="sticky top-32 self-start">
-          <div className="relative h-96 overflow-hidden rounded-xl shadow-lg">
-            <Image
-              src={trip.images[activeImageIndex]}
-              alt={trip.title}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-          <div className="flex mt-4 space-x-2 overflow-x-auto pb-2">
-            {trip.images.map((image, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveImageIndex(index)}
-                className={`relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-md transition-all ${
-                  index === activeImageIndex
-                    ? 'ring-2 ring-blue-600 ring-offset-2'
-                    : 'opacity-70 hover:opacity-100'
-                }`}
-              >
-                <Image
-                  src={image}
-                  alt={`${trip.title} - view ${index + 1}`}
-                  fill
-                  className="object-cover"
-                />
-              </button>
-            ))}
-          </div>
-        </div>
+  {/* Image Section */}
+  <div className="lg:sticky lg:top-32 self-start">
+    <div className="relative h-96 overflow-hidden rounded-xl shadow-lg">
+      <Image
+        src={trip.images[activeImageIndex]}
+        alt={trip.title}
+        fill
+        className="object-cover"
+        priority
+      />
+    </div>
+    <div className="flex mt-4 space-x-2 overflow-x-auto pb-2">
+      {trip.images.map((image, index) => (
+        <button
+          key={index}
+          onClick={() => setActiveImageIndex(index)}
+          className={`relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-md transition-all ${
+            index === activeImageIndex
+              ? 'ring-2 ring-blue-600 ring-offset-2'
+              : 'opacity-70 hover:opacity-100'
+          }`}
+        >
+          <Image
+            src={image}
+            alt={`${trip.title} - view ${index + 1}`}
+            fill
+            className="object-cover"
+          />
+        </button>
+      ))}
+    </div>
+  </div>
 
-        <div>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
-            {trip.title}
-          </h1>
-          <p className="text-xl text-blue-600 dark:text-blue-400 mb-6 flex items-center">
-            <MapPin className="h-5 w-5 mr-1" /> {trip.destination}
-          </p>
-          <p className="text-gray-700 dark:text-gray-300 mb-8 text-lg">
-            {trip.description}
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <div className="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg flex flex-col items-center text-center">
-              <Calendar className="h-6 w-6 text-blue-600 dark:text-blue-400 mb-2" />
-              <span className="text-sm text-gray-500 dark:text-gray-400">Duration</span>
-              <span className="text-lg font-semibold text-gray-900 dark:text-white">{trip.duration} Days</span>
-            </div>
-            <div className="bg-green-50 dark:bg-green-900/30 p-4 rounded-lg flex flex-col items-center text-center">
-              <Users className="h-6 w-6 text-green-600 dark:text-green-400 mb-2" />
-              <span className="text-sm text-gray-500 dark:text-gray-400">Group Size</span>
-              <span className="text-lg font-semibold text-gray-900 dark:text-white">Max 12</span>
-            </div>
-            <div className="bg-purple-50 dark:bg-purple-900/30 p-4 rounded-lg flex flex-col items-center text-center">
-              <Camera className="h-6 w-6 text-purple-600 dark:text-purple-400 mb-2" />
-              <span className="text-sm text-gray-500 dark:text-gray-400">Activities</span>
-              <span className="text-lg font-semibold text-gray-900 dark:text-white">10+</span>
-            </div>
-            <div className="bg-orange-50 dark:bg-orange-900/30 p-4 rounded-lg flex flex-col items-center text-center">
-              <Clock className="h-6 w-6 text-orange-600 dark:text-orange-400 mb-2" />
-              <span className="text-sm text-gray-500 dark:text-gray-400">Departures</span>
-              <span className="text-lg font-semibold text-gray-900 dark:text-white">Weekly</span>
-            </div>
-          </div>
-          <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg flex justify-between items-center mb-8">
-            <div>
-              <p className="text-3xl font-bold text-gray-900 dark:text-white">
-                ₹{trip.price.toLocaleString()}
-                <span className="text-base font-normal text-gray-500 dark:text-gray-400 ml-1">
-                  per person
-                </span>
-              </p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                *Starting price for quad sharing from Chandigarh.
-              </p>
-            </div>
-            <Button
-              size="lg"
-              onClick={handleAddToCart}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
-            >
-              <ShoppingCart className="h-4 w-4 mr-2" />
-              Book Now
-            </Button>
-          </div>
-          <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-12">
-            <Info className="h-4 w-4 mr-2 text-blue-600 dark:text-blue-400" />
-            Interested in a private tour or custom itinerary?
-            <a href="/contact" className="ml-1 text-blue-600 dark:text-blue-400 hover:underline">
-              Contact us
-            </a>
-          </div>
-        </div>
+  {/* Content Section */}
+  <div>
+    <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+      {trip.title}
+    </h1>
+    <p className="text-xl text-blue-600 dark:text-blue-400 mb-6 flex items-center">
+      <MapPin className="h-5 w-5 mr-1" /> {trip.destination}
+    </p>
+    <p className="text-gray-700 dark:text-gray-300 mb-8 text-lg">
+      {trip.description}
+    </p>
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <div className="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg flex flex-col items-center text-center">
+        <Calendar className="h-6 w-6 text-blue-600 dark:text-blue-400 mb-2" />
+        <span className="text-sm text-gray-500 dark:text-gray-400">Duration</span>
+        <span className="text-lg font-semibold text-gray-900 dark:text-white">{trip.duration} Days</span>
       </div>
+      <div className="bg-green-50 dark:bg-green-900/30 p-4 rounded-lg flex flex-col items-center text-center">
+        <Users className="h-6 w-6 text-green-600 dark:text-green-400 mb-2" />
+        <span className="text-sm text-gray-500 dark:text-gray-400">Group Size</span>
+        <span className="text-lg font-semibold text-gray-900 dark:text-white">Max 12</span>
+      </div>
+      <div className="bg-purple-50 dark:bg-purple-900/30 p-4 rounded-lg flex flex-col items-center text-center">
+        <Camera className="h-6 w-6 text-purple-600 dark:text-purple-400 mb-2" />
+        <span className="text-sm text-gray-500 dark:text-gray-400">Activities</span>
+        <span className="text-lg font-semibold text-gray-900 dark:text-white">10+</span>
+      </div>
+      <div className="bg-orange-50 dark:bg-orange-900/30 p-4 rounded-lg flex flex-col items-center text-center">
+        <Clock className="h-6 w-6 text-orange-600 dark:text-orange-400 mb-2" />
+        <span className="text-sm text-gray-500 dark:text-gray-400">Departures</span>
+        <span className="text-lg font-semibold text-gray-900 dark:text-white">Weekly</span>
+      </div>
+    </div>
+    <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg flex justify-between items-center mb-8">
+      <div>
+        <p className="text-3xl font-bold text-gray-900 dark:text-white">
+          ₹{trip.price.toLocaleString()}
+          <span className="text-base font-normal text-gray-500 dark:text-gray-400 ml-1">
+            per person
+          </span>
+        </p>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          *Starting price for quad sharing from Chandigarh.
+        </p>
+      </div>
+      <Button
+        size="lg"
+        onClick={handleAddToCart}
+        className="bg-blue-600 hover:bg-blue-700 text-white"
+      >
+        <ShoppingCart className="h-4 w-4 mr-2" />
+        Book Now
+      </Button>
+    </div>
+    <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-12">
+      <Info className="h-4 w-4 mr-2 text-blue-600 dark:text-blue-400" />
+      Interested in a private tour or custom itinerary?
+      <a href="/contact" className="ml- brom-1 text-blue-600 dark:text-blue-400 hover:underline">
+        Contact us
+      </a>
+    </div>
+  </div>
+</div>
 
       <section className="mb-16">
         <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 pb-2 border-b border-gray-200 dark:border-gray-700">
