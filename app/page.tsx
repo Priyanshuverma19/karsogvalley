@@ -128,7 +128,7 @@ const packages = [
     destination: 'Tirthan Valley, Himachal Pradesh',
     price: 8000,
     duration: '3N/4D',
-    image: '/jalori2.jpeg', // Replace with actual image path
+    image: '/Jalori2.jpeg', // Replace with actual image path
   },
 ];
 

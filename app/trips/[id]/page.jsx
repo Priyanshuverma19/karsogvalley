@@ -227,11 +227,11 @@ const trips = [
     duration: 4,
     description: 'Immerse yourself in the pristine beauty of Tirthan Valley, Jibhi, and Jalori Pass...',
     images: [
-      '/jalori1.jpeg',
-      '/jalori2.jpeg',
-      '/jalori3.jpeg',
-      '/jalori4.jpeg',
-      '/jalori5.jpeg',
+      '/Jalori1.jpeg',
+      '/Jalori2.jpeg',
+      '/Jalori3.jpeg',
+      '/Jalori4.jpeg',
+      '/Jalori5.jpeg',
     ],
     itinerary: [
       {
